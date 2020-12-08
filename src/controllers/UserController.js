@@ -1,5 +1,3 @@
-const { create } = require('domain');
-const { update } = require('../database');
 const knex = require('../database')
 
 module.exports = {
@@ -31,6 +29,20 @@ module.exports = {
       await knex('users')
       .update({ username })
       .where({ id })
+
+      return res.send()
+    } catch (error) {
+      next(error)
+    }
+  },
+
+  async delete(req, res, next) {
+    try {
+      const { id } = req.params
+
+      await knex('users')
+      .where({ id })
+      .del()
 
       return res.send()
     } catch (error) {
