@@ -1,4 +1,5 @@
 const { create } = require('domain');
+const { update } = require('../database');
 const knex = require('../database')
 
 module.exports = {
@@ -21,4 +22,19 @@ module.exports = {
       next(error)
     }
   },
+
+  async update(req, res, next) {
+    try {
+      const { username } = req.body
+      const { id } = req.params
+
+      await knex('users')
+      .update({ username })
+      .where({ id })
+
+      return res.send()
+    } catch (error) {
+      next(error)
+    }
+  }
 }
