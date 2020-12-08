@@ -1,3 +1,4 @@
+const { create } = require('domain');
 const knex = require('../database')
 
 module.exports = {
@@ -5,5 +6,12 @@ module.exports = {
     const results = await knex('users')
 
     return res.json(results);
-  }
+  },
+
+  async create(req, res) {
+    const { username } = req.body
+    await knex('users').insert({
+      username
+    })
+  },
 }
