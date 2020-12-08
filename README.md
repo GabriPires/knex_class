@@ -1,1 +1,1 @@
-# Studying KnexJS
+# Studying KnexJS 🔥
